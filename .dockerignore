@@ -1,0 +1,64 @@
+# Node.js dependencies
+node_modules/
+
+# Build outputs
+dist/
+build/
+out/
+
+# Test and debug artifacts
+test/
+tests/
+debug/
+*.log
+
+# IDE/editor files
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Version control
+.git/
+.gitignore
+.svn/
+.hg/
+
+# Environment and secrets
+.env*
+*.env
+*.pem
+*.key
+*.crt
+config.local.*
+*.local.yml
+
+# Documentation and markdown
+README*
+*.md
+docs/
+
+# Docker and Compose files
+Dockerfile*
+docker-compose*
+compose.yaml*
+
+# Temporary and backup files
+tmp/
+temp/
+*.tmp
+*.bak
+*.bak.*
+
+# Project-specific: backup and user files
+*.bak
+*.bak.*
+user_files/
+
+# Miscellaneous
+*.gitattributes
+
+# Exclude lock files from ignore (they should be included)
+!package-lock.json
+
+# Exclude nothing else by default

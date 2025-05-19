@@ -1,0 +1,169 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+@import 'antd/dist/reset.css';
+
+body {
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+  transition: colors 0.3s ease;
+}
+
+/* Global Styles */
+html {
+  font-family: 'Poppins', system-ui, sans-serif;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(156, 163, 175, 0.5);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(107, 114, 128, 0.7);
+}
+
+/* Custom animations */
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Monaco Editor Customizations */
+
+/* Enhance hover widget for kid-friendly tooltips */
+.monaco-hover {
+  animation: fadeIn 0.3s ease-out;
+  border-radius: 8px !important;
+  border: none !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25) !important;
+  overflow: hidden !important;
+}
+
+.monaco-hover .markdown-hover code {
+  background-color: rgba(0, 0, 0, 0.1) !important;
+  border-radius: 4px !important;
+  padding: 2px 4px !important;
+}
+
+.monaco-hover .markdown-hover a {
+  text-decoration: none !important;
+  font-weight: bold !important;
+}
+
+.monaco-hover .markdown-hover p {
+  margin-bottom: 8px !important;
+}
+
+.monaco-hover .markdown-hover strong {
+  color: #18a3ff !important;
+}
+
+/* Suggestion widget styling */
+.monaco-editor .suggest-widget {
+  border-radius: 8px !important;
+  animation: scaleIn 0.2s ease-out !important;
+  overflow: hidden !important;
+  border: none !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25) !important;
+}
+
+.monaco-editor .suggest-widget .monaco-list-row.focused {
+  transition: all 0.1s ease-in-out !important;
+}
+
+/* Custom animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* Customizations for light mode */
+.monaco-editor[data-theme="vs"] .monaco-hover {
+  background-color: white !important;
+  border: 1px solid #e0e0e0 !important;
+}
+
+.monaco-editor[data-theme="vs"] .suggest-widget {
+  background-color: white !important;
+}
+
+/* Customizations for dark mode */
+.monaco-editor[data-theme="vs-dark"] .monaco-hover {
+  background-color: #252526 !important;
+}
+
+.monaco-editor[data-theme="vs-dark"] .suggest-widget {
+  background-color: #252526 !important;
+}
+
+/* Glowing button effect */
+.glow-button {
+  animation: glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+  from {
+    box-shadow: 0 0 5px -5px #3f51b5;
+  }
+  to {
+    box-shadow: 0 0 20px -5px #3f51b5;
+  }
+}
+
+/* Pulse button effect */
+.pulse-button {
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Flexbox utility classes */
+.flex {
+  display: flex;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.mb-4 {
+  margin-bottom: 1rem;
+} 

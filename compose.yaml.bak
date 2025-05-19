@@ -1,0 +1,35 @@
+services:
+  js-client:
+    build:
+      context: ./client
+      dockerfile: ../clientDockerfile
+    container_name: js-client
+    restart: unless-stopped
+    init: true
+    networks:
+      - app-network
+    ports:
+      - "4173:4173"  # Vite preview server for frontend
+    depends_on:
+      - js-server
+    # No env_file needed for client
+
+  js-server:
+    build:
+      context: ./server
+      dockerfile: ../serverDockerfile
+    container_name: js-server
+    restart: unless-stopped
+    init: true
+    networks:
+      - app-network
+    ports:
+      - "5000:5000"  # Node.js backend server
+    env_file:
+      - ./server/.env
+    # The server requires a .env file for API keys and configuration
+    # See server/README.md for required variables
+
+networks:
+  app-network:
+    driver: bridge

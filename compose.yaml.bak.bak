@@ -1,0 +1,34 @@
+services:
+  js-client:
+    build:
+      context: ./client
+    container_name: js-client
+    restart: unless-stopped
+    init: true
+    ports:
+      - "4173:4173"  # Vite preview server
+    networks:
+      - app-network
+    depends_on:
+      - js-server
+    # No env_file needed for client
+
+  js-server:
+    build:
+      context: ./server
+    container_name: js-server
+    restart: unless-stopped
+    init: true
+    ports:
+      - "5000:5000"  # Node.js backend server
+    networks:
+      - app-network
+    # Uses .env for API keys and config
+    env_file:
+      - ./server/.env
+    # If .env is not present, comment out the above line:
+    # env_file: ./server/.env  # Uncomment if .env file exists
+
+networks:
+  app-network:
+    driver: bridge

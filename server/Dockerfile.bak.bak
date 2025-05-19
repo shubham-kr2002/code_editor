@@ -1,0 +1,27 @@
+# syntax=docker/dockerfile:1
+ARG NODE_VERSION=22.13.1
+FROM node:${NODE_VERSION}-slim AS base
+WORKDIR /app
+
+# Install dependencies separately to leverage Docker cache
+COPY --link package.json package-lock.json ./
+
+RUN --mount=type=cache,target=/root/.npm \
+    npm ci --production
+
+# Copy application source code (excluding .env, .git, etc. via .dockerignore)
+COPY --link src/ ./src/
+COPY --link updateClient.js ./
+COPY --link test.js ./
+COPY --link user_files/ ./user_files/
+
+# Create a non-root user and switch to it
+RUN addgroup --system appgroup && adduser --system --ingroup appgroup appuser
+USER appuser
+
+ENV NODE_ENV=production
+ENV NODE_OPTIONS="--max-old-space-size=4096"
+
+EXPOSE 5000
+
+CMD ["npm", "start"]

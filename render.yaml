@@ -1,0 +1,38 @@
+# Render.yaml for deploying the Code Editor application to Render.com
+services:
+  # Frontend Web Service
+  - type: web
+    name: code-editor-client
+    runtime: docker
+    repo: https://github.com/kingxshubham/code-editor.git
+    region: oregon # Choose your preferred region
+    plan: free # Adjust based on your needs
+    branch: main
+    dockerfilePath: ./client/Dockerfile
+    dockerContext: ./client
+    healthCheckPath: /
+    envVars:
+      - key: VITE_API_URL
+        value: https://code-editor-server.onrender.com # Replace with your actual server URL
+    pullRequestPreviewsEnabled: true
+
+  # Backend Web Service
+  - type: web
+    name: code-editor-server
+    runtime: docker
+    repo: https://github.com/kingxshubham/code-editor.git
+    region: oregon # Choose your preferred region
+    plan: free # Adjust based on your needs
+    branch: main
+    dockerfilePath: ./server/Dockerfile
+    dockerContext: ./server
+    healthCheckPath: /api/health
+    envVars:
+      - key: PORT
+        value: 5000
+      - key: GEMINI_API_KEY
+        value: AIzaSyB2SS_gS5eQzAhp8tZfkigP8-zxdfrzS5Y
+      - key: JUDGE0_API_URL
+        value: https://judge0-ce.p.rapidapi.com
+      - key: JUDGE0_API_KEY
+        value: be4084533cmsh28b07ad09f04548p10f8aejsn2957489c65a8 

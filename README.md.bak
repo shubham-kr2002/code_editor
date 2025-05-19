@@ -1,0 +1,110 @@
+# CodeMentor - Online Code Editor for Young Learners
+
+A beginner-friendly online code editor built with React, Tailwind CSS, and Node.js, designed to help young learners practice coding in multiple languages.
+
+## Features
+
+- Monaco Editor integration for a professional coding experience
+- Support for multiple programming languages
+- Real-time code execution using Judge0 API
+- Responsive design suitable for various devices
+- File saving and management capabilities
+
+## Project Structure
+
+```
+code-editor/
+├── client/                 # React frontend
+│   ├── public/             # Static files
+│   │   ├── components/     # React components
+│   │   ├── App.jsx         # Main application component
+│   │   └── main.jsx        # Entry point
+│   ├── index.html          # HTML template
+│   └── package.json        # Frontend dependencies
+├── server/                 # Node.js backend
+│   ├── src/                # Source files
+│   │   ├── routes/         # API routes
+│   │   └── index.js        # Server entry point
+│   └── package.json        # Backend dependencies
+└── README.md               # Project documentation
+```
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js (v14 or higher)
+- npm or yarn
+
+### Installation
+
+1. Clone the repository:
+   ```
+   git clone https://github.com/yourusername/code-editor.git
+   cd code-editor
+   ```
+
+2. Install frontend dependencies:
+   ```
+   cd client
+   npm install
+   ```
+
+3. Install backend dependencies:
+   ```
+   cd ../server
+   npm install
+   ```
+
+4. Create a `.env` file in the server directory:
+   ```
+   PORT=5000
+   JUDGE0_API=https://judge0-ce.p.rapidapi.com
+   JUDGE0_KEY=your_judge0_api_key
+   ```
+
+   Get a Judge0 API key from [RapidAPI](https://rapidapi.com/judge0-official/api/judge0-ce).
+
+### Running the Application
+
+1. Start the backend server:
+   ```
+   cd server
+   npm run dev
+   ```
+
+2. Start the frontend development server:
+   ```
+   cd client
+   npm run dev
+   ```
+
+3. Open your browser and navigate to:
+   ```
+   http://localhost:5173
+   ```
+
+## Deployment
+
+### Frontend
+
+Build the frontend for production:
+```
+cd client
+npm run build
+```
+
+The build files will be in the `client/dist` directory.
+
+### Backend
+
+For production deployment, use a process manager like PM2:
+```
+npm install -g pm2
+cd server
+pm2 start src/index.js --name code-editor-backend
+```
+
+## License
+
+This project is licensed under the MIT License. 

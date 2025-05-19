@@ -1,0 +1,76 @@
+# Node.js dependencies
+node_modules/
+
+# Build outputs
+build/
+dist/
+out/
+
+# Test and debug artifacts
+test/
+tests/
+*.log
+npm-debug.log
+yarn-debug.log
+debug/
+
+# IDE/editor files
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Version control
+.git/
+.gitignore
+.svn/
+.hg/
+
+# Environment and secrets
+.env*
+*.env
+*.pem
+*.key
+*.crt
+config.local.*
+*.local.yml
+
+# Documentation and markdown
+README*
+*.md
+docs/
+
+# Docker and compose files
+Dockerfile*
+docker-compose*
+compose.yaml
+
+# Temporary and local files
+tmp/
+temp/
+*.tmp
+.local/
+local/
+
+# Project-specific
+*.bak
+
+# Exclude user files directory from server if needed (uncomment if not required in image)
+# server/user_files/
+
+# Exclude code_editor-main/.git directory
+code_editor-main/.git/
+
+# Exclude .gitattributes (not needed in image)
+.gitattributes
+code_editor-main/.gitattributes
+
+# Exclude YAML config files not needed in image
+*.yaml
+
+# Exclude backup files
+*~
+
+# Exclude files with no extension that are not needed (add specific names if known)
+# (Uncomment and specify if needed)
+# filename

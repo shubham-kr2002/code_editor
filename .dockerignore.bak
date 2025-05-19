@@ -1,0 +1,63 @@
+# Node.js dependencies
+node_modules/
+
+# Build outputs
+dist/
+build/
+out/
+
+# Test and debug artifacts
+test/
+tests/
+*.log
+debug/
+
+# IDE/editor files
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Version control
+.git/
+.gitignore
+.svn/
+.hg/
+
+# Environment and secrets
+.env*
+*.env
+*.pem
+*.key
+*.crt
+config.local.*
+*.local.yml
+
+# Documentation
+README*
+*.md
+docs/
+
+# Temporary and local files
+tmp/
+temp/
+*.tmp
+.local/
+local/
+
+# Project-specific
+code_editor-main/
+
+# Exclude user files directory from server (if you want to keep it empty in the image, otherwise comment out)
+server/user_files/
+
+# Exclude gitattributes
+.gitattributes
+
+# Exclude HTML and CSS only if not needed in build context (uncomment if not needed)
+# *.html
+# *.css
+
+# Exclude package-lock.json and yarn.lock (per instructions, do NOT include these patterns)
+# package-lock.json
+# yarn.lock

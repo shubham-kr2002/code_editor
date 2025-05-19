@@ -1,46 +1,52 @@
-# Render.yaml for deploying the Code Editor application to Render.com
+# Render Blueprint API
+# https://render.com/docs/blueprint-spec
+
+# The services section defines all the services that will be deployed
 services:
-  # Frontend Web Service
+  # Frontend React application
   - type: web
-    name: code-editor-client
-    runtime: docker
-    repo: https://github.com/kingxshubham/code-editor.git
-    region: oregon
-    plan: free
-    branch: master # Changed from 'main' to 'master' (verify the correct branch name)
+    name: code-mentor-client
+    env: docker
+    repo: https://github.com/shubham-kr2002/code_editor.git
     dockerfilePath: ./client/Dockerfile
     dockerContext: ./client
+    plan: free
+    branch: main
+    numInstances: 1
     healthCheckPath: /
     envVars:
-      - key: VITE_API_URL
+      - key: NODE_ENV
+        value: production
+      - key: REACT_APP_API_URL
         fromService:
-          name: code-editor-server
+          name: code-mentor-server
           type: web
-          property: host # Use dynamic hostname instead of hardcoded URL
-    pullRequestPreviewsEnabled: true
+          property: host # Changed from 'url' to 'host'
 
-  # Backend Web Service
+  # Backend Node.js server
   - type: web
-    name: code-editor-server
-    runtime: docker
-    repo: https://github.com/kingxshubham/code-editor.git
-    region: oregon
-    plan: free
-    branch: master # Changed from 'main' to 'master' (verify the correct branch name)
+    name: code-mentor-server
+    env: docker
+    repo: https://github.com/shubham-kr2002/code_editor.git
     dockerfilePath: ./server/Dockerfile
     dockerContext: ./server
-    healthCheckPath: /api/health
+    plan: free
+    branch: main
+    numInstances: 1
+    healthCheckPath: /
     envVars:
+      - key: NODE_ENV
+        value: production
       - key: PORT
         value: 5000
       - key: GEMINI_API_KEY
-        sync: false # Move to Render dashboard for security
-      - key: JUDGE0_API_URL
+        value: AIzaSyB2SS_gS5eQzAhp8tZfkigP8-zxdfrzS5Y # Pre-filled but can be changed during deployment
+      - key: JUDGE0_API
         value: https://judge0-ce.p.rapidapi.com
-      - key: JUDGE0_API_KEY
-        sync: false # Move to Render dashboard for security
+      - key: JUDGE0_KEY
+        value: be4084533cmsh28b07ad09f04548p10f8aejsn2957489c65a8 # Pre-filled but can be changed during deployment
       - key: CORS_ORIGIN
         fromService:
-          name: code-editor-client
+          name: code-mentor-client
           type: web
-          property: host # Allow frontend hostname dynamically
+          property: host # Changed from 'url' to 'host'

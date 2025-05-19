@@ -5,15 +5,18 @@ services:
     name: code-editor-client
     runtime: docker
     repo: https://github.com/kingxshubham/code-editor.git
-    region: oregon # Choose your preferred region
-    plan: free # Adjust based on your needs
-    branch: main
+    region: oregon
+    plan: free
+    branch: master # Changed from 'main' to 'master' (verify the correct branch name)
     dockerfilePath: ./client/Dockerfile
     dockerContext: ./client
     healthCheckPath: /
     envVars:
       - key: VITE_API_URL
-        value: https://code-editor-server.onrender.com # Replace with your actual server URL
+        fromService:
+          name: code-editor-server
+          type: web
+          property: host # Use dynamic hostname instead of hardcoded URL
     pullRequestPreviewsEnabled: true
 
   # Backend Web Service
@@ -21,9 +24,9 @@ services:
     name: code-editor-server
     runtime: docker
     repo: https://github.com/kingxshubham/code-editor.git
-    region: oregon # Choose your preferred region
-    plan: free # Adjust based on your needs
-    branch: main
+    region: oregon
+    plan: free
+    branch: master # Changed from 'main' to 'master' (verify the correct branch name)
     dockerfilePath: ./server/Dockerfile
     dockerContext: ./server
     healthCheckPath: /api/health
@@ -31,8 +34,13 @@ services:
       - key: PORT
         value: 5000
       - key: GEMINI_API_KEY
-        value: AIzaSyB2SS_gS5eQzAhp8tZfkigP8-zxdfrzS5Y
+        sync: false # Move to Render dashboard for security
       - key: JUDGE0_API_URL
         value: https://judge0-ce.p.rapidapi.com
       - key: JUDGE0_API_KEY
-        value: be4084533cmsh28b07ad09f04548p10f8aejsn2957489c65a8 
+        sync: false # Move to Render dashboard for security
+      - key: CORS_ORIGIN
+        fromService:
+          name: code-editor-client
+          type: web
+          property: host # Allow frontend hostname dynamically
